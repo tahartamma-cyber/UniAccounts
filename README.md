@@ -28,5 +28,5 @@ From the project root:
 
 ## Screenshots
 
-![Main](docs/capture1.png)
-![Validation](docs/capture2.png)
+![Main](docs/capture_main.png)
+![Validation](docs/capture_validation.png)
