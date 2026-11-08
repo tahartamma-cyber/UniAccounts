@@ -1,16 +1,24 @@
+package uniaccounts.util;
+
 import java.util.ArrayList;
 import java.util.List;
 
-// نمط Singleton: سجل تدقيق واحد فقط في البرنامج
+/**
+ * Pattern: Singleton.
+ * Role: the one and only audit log of the program.
+ */
 public class AuditLogger {
 
+    // Singleton: the single instance
     private static AuditLogger instance;
 
-    // كل العمليات المسجلة
+    // all recorded operations
     private final List<String> entries = new ArrayList<>();
 
+    // Singleton: private constructor, nobody else can call "new"
     private AuditLogger() { }
 
+    // Singleton: lazy initialization, created on first request then always reused
     public static AuditLogger getInstance() {
         if (instance == null) {
             instance = new AuditLogger();

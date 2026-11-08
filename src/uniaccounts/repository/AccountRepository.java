@@ -1,15 +1,26 @@
+package uniaccounts.repository;
+
 import java.util.HashMap;
 import java.util.Map;
 
-// نمط Singleton: مستودع واحد فقط في البرنامج
+import uniaccounts.model.StudentAccount;
+import uniaccounts.util.AuditLogger;
+
+/**
+ * Pattern: Singleton.
+ * Role: the one and only repository that stores all the accounts.
+ */
 public class AccountRepository {
 
+    // Singleton: the single instance
     private static AccountRepository instance;
 
     private final Map<String, StudentAccount> accounts = new HashMap<>();
 
+    // Singleton: private constructor
     private AccountRepository() { }
 
+    // Singleton: lazy initialization
     public static AccountRepository getInstance() {
         if (instance == null) {
             instance = new AccountRepository();

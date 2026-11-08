@@ -1,6 +1,13 @@
+package uniaccounts.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Student account.
+ * Patterns: Builder (Product: built only through StudentAccount.Builder)
+ *           Prototype (Prototype: cloneFor() copies a template and changes the identity).
+ */
 public class StudentAccount {
     private final String id;
     private final String fullName;
@@ -11,7 +18,7 @@ public class StudentAccount {
     private final boolean scholarship;
     private final List<String> courses;
 
-    // المنشئ private: الحساب ما يتصنع إلا عن طريق Builder
+    // Builder: private constructor, so an account can only be created through the Builder
     private StudentAccount(Builder b) {
         this.id = b.id;
         this.fullName = b.fullName;
@@ -25,15 +32,17 @@ public class StudentAccount {
 
     public String getId() { return id; }
 
+    public String getPhone() { return phone; }
+
     public void addCourse(String course) { courses.add(course); }
 
-    // ===== Prototype: نسخ القالب وتغيير الهوية فقط =====
+    // Prototype: copy the template and change only the identity (id, name, email)
     public StudentAccount cloneFor(String newId, String newFullName, String newEmail) {
         Builder b = new Builder(newId, newFullName, newEmail)
                 .level(this.level)
                 .major(this.major)
                 .scholarship(this.scholarship);
-        // نسخ المقررات واحداً واحداً: قائمة جديدة مستقلة (نسخ عميق)
+        // deep copy: courses are copied one by one into a new, independent list
         for (String c : this.courses) {
             b.course(c);
         }
@@ -46,7 +55,11 @@ public class StudentAccount {
                 + " | " + major + " | scholarship=" + scholarship + " | " + courses;
     }
 
-    // ===== Builder =====
+    /**
+     * Pattern: Builder (ConcreteBuilder, static nested class).
+     * Mandatory fields go in the constructor, optional ones in chained methods,
+     * and build() validates the rules before creating the account.
+     */
     public static class Builder {
         private final String id;
         private final String fullName;

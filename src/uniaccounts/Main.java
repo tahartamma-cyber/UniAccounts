@@ -1,20 +1,31 @@
+package uniaccounts;
+
+import uniaccounts.model.StudentAccount;
+import uniaccounts.repository.AccountRepository;
+import uniaccounts.util.AuditLogger;
+
+/**
+ * Client of the three patterns:
+ * Builder (builds the template), Prototype (clones it), Singleton (repository + audit log).
+ */
 public class Main {
     public static void main(String[] args) {
+        // Singleton: the unique repository
         AccountRepository repo = AccountRepository.getInstance();
 
-        // القالب: دفعة L3 معلوماتية (ما نضيفوهوش للمستودع)
+        // Builder: template for an L3 Informatique cohort (not added to the repository)
         StudentAccount template = new StudentAccount.Builder(
                 "TEMPLATE", "Template", "template@univ.dz")
                 .level("L3").major("Informatique")
                 .course("POO").course("BD").course("Reseaux")
                 .build();
 
-        // ثلاثة طلبة بالنسخ: نبدل الهوية فقط
+        // Prototype: three students by cloning, only the identity changes
         StudentAccount a = template.cloneFor("101", "Amine Ben", "amine@univ.dz");
         StudentAccount b = template.cloneFor("102", "Sara Kaci", "sara@univ.dz");
         StudentAccount c = template.cloneFor("103", "Yacine Omar", "yacine@univ.dz");
 
-        // نغيّر مقررات سارة فقط: هل تتأثر الحسابات الأخرى؟
+        // only Sara's courses change: the other accounts must not be affected
         b.addCourse("IA");
 
         repo.add(a);
@@ -27,6 +38,7 @@ public class Main {
         System.out.println(template);
         System.out.println("Count = " + repo.count());
 
+        // Singleton: the unique audit log
         AuditLogger.getInstance().printAll();
     }
 }
