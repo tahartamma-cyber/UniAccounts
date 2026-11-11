@@ -2,7 +2,6 @@ package uniaccounts.repository;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import uniaccounts.model.StudentAccount;
 import uniaccounts.util.AuditLogger;
 
@@ -13,12 +12,12 @@ import uniaccounts.util.AuditLogger;
 public class AccountRepository {
 
     // Singleton: the single instance
-    private static AccountRepository instance;
+    private static AccountRepository instance;// يخزن النسخه الوحيده التي نريد استخامه  من المستودع
 
     private final Map<String, StudentAccount> accounts = new HashMap<>();
 
     // Singleton: private constructor
-    private AccountRepository() { }
+    private AccountRepository() { } // بهدف منع انشاء نسخه عشوايه من المستودع 
 
     // Singleton: lazy initialization
     public static AccountRepository getInstance() {

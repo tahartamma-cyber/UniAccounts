@@ -26,8 +26,7 @@ Open a terminal in the project root (the folder that contains src), then run the
 
 3. Run the validation demo (shows rejected email, level and duplicate id):
 
-    java -cp out uniaccounts.ValidationDemo
-
+     java -cp out uniaccounts.ValidationDemo
 ## Class diagram
 
 ![UML](docs/uml.png)

@@ -16,6 +16,7 @@ public class Main {
         // Builder: template for an L3 Informatique cohort (not added to the repository)
         StudentAccount template = new StudentAccount.Builder(
                 "TEMPLATE", "Template", "template@univ.dz")
+                .phone("0556565656")
                 .level("L3").major("Informatique")
                 .course("POO").course("BD").course("Reseaux")
                 .build();

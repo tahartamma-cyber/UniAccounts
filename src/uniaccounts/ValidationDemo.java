@@ -30,7 +30,7 @@ public class ValidationDemo {
         // 3) Singleton repository rejects a duplicate id
         StudentAccount first = new StudentAccount.Builder("101", "Amine Ben", "amine@univ.dz").build();
         StudentAccount dup = new StudentAccount.Builder("101", "Other Student", "other@univ.dz").build();
-        repo.add(first);
+        repo.add(first); // طلب من المستودع انشاء الحساب الاول 
         try {
             repo.add(dup);
         } catch (IllegalStateException e) {

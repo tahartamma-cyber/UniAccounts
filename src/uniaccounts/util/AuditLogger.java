@@ -16,7 +16,7 @@ public class AuditLogger {
     private final List<String> entries = new ArrayList<>();
 
     // Singleton: private constructor, nobody else can call "new"
-    private AuditLogger() { }
+    private AuditLogger() { } // حتى لا يستطيع اي كلاس اخر كتابة 
 
     // Singleton: lazy initialization, created on first request then always reused
     public static AuditLogger getInstance() {

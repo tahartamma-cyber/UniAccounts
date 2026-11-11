@@ -39,6 +39,7 @@ public class StudentAccount {
     // Prototype: copy the template and change only the identity (id, name, email)
     public StudentAccount cloneFor(String newId, String newFullName, String newEmail) {
         Builder b = new Builder(newId, newFullName, newEmail)
+                .phone(this.phone)
                 .level(this.level)
                 .major(this.major)
                 .scholarship(this.scholarship);
@@ -50,16 +51,15 @@ public class StudentAccount {
     }
 
     @Override
-    public String toString() {
-        return id + " | " + fullName + " | " + email + " | " + level
-                + " | " + major + " | scholarship=" + scholarship + " | " + courses;
-    }
+   
 
-    /**
-     * Pattern: Builder (ConcreteBuilder, static nested class).
-     * Mandatory fields go in the constructor, optional ones in chained methods,
-     * and build() validates the rules before creating the account.
-     */
+// nested class 
+     public String toString() {
+    return id + " | " + fullName + " | " + email
+            + " | phone=" + phone
+            + " | " + level + " | " + major
+            + " | scholarship=" + scholarship + " | " + courses;
+}
     public static class Builder {
         private final String id;
         private final String fullName;
